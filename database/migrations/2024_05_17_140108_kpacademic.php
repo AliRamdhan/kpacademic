@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('locationId');
             $table->string('locationProof');
             $table->string('locationName');
+            $table->string('locationReason');
             $table->string('locationStatus'); //pending,approve
             $table->unsignedBigInteger('locationUser');
             $table->foreign('locationUser')->references('id')->on('users')->onDelete('cascade');

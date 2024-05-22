@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class LocationKP extends Model
 {
     use HasFactory;
@@ -14,11 +13,17 @@ class LocationKP extends Model
         'locationProof',
         'locationName',
         'locationUser',
-        'locationStatus'
+        'locationStatus',
+        'locationReason'
     ];
 
-    public function studens(){
+    public function user() //students
+    {
         return $this->belongsTo(User::class, 'locationUser');
     }
 
+    public function reports()
+    {
+        return $this->hasMany(Reports::class, 'reportKp');
+    }
 }

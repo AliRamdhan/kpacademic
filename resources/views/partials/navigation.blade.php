@@ -32,13 +32,13 @@
                         <div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
                             <a href="{{ route('dashboard') }}"
                                 class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0">Dashboard</a>
-                            <a href="{{route('student.application.all')}}"
+                            <a href="{{route('student.application.kp.all')}}"
                                 class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0">
                                 KP Application</a>
-                            <a href="#"
+                            <a href="{{route('student.application.recognition.all')}}"
                                 class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0">
                                 Recognition Application</a>
-                            <a href="#"
+                            <a href="{{route('student.application.reports.all')}}"
                                 class="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0">Reports</a>
                         </div>
                         <nav class="-mx-3 flex flex-1 justify-end">

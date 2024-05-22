@@ -17,18 +17,22 @@ class MBKMCoursesFactory extends Factory
      */
     public function definition(): array
     {
-        $courses = [
-            ['name' => 'Bangkit', 'duration' => '6 months'],
-            ['name' => 'Kampus Merdeka', 'duration' => '12 months'],
-            ['name' => 'Internship', 'duration' => '3 months'],
-            ['name' => 'Independent Study', 'duration' => '4 months'],
-        ];
-
-        $course = $this->faker->randomElement($courses);
-
         return [
-            'mbkmCoursesName' => $course['name'],
-            'mbkmCoursesDuration' => $course['duration'],
+            'mbkmCoursesName' => $this->faker->word,
+            'mbkmCoursesDuration' => $this->faker->word,
         ];
+    }
+
+    /**
+     * Configure the factory to accept custom course data.
+     */
+    public function setCourseData(array $course): self
+    {
+        return $this->state(function () use ($course) {
+            return [
+                'mbkmCoursesName' => $course['name'],
+                'mbkmCoursesDuration' => $course['duration'],
+            ];
+        });
     }
 }

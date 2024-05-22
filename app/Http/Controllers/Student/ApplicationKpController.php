@@ -28,7 +28,7 @@ class ApplicationKpController extends Controller
             $validate = $request->validate([
                 'locationProof' => 'required',
                 'locationName' => 'required',
-                // 'locationUser' => 'required',
+                'locationReason'=> 'required'
             ]);
             if ($request->hasFile('locationProof')) {
                 $image = $request->file('locationProof');
@@ -43,11 +43,12 @@ class ApplicationKpController extends Controller
                     $locationKp = new LocationKP;
                     $locationKp->locationProof = $filename;
                     $locationKp->locationName = $validate['locationName'];
+                    $locationKp->locationReason = $validate['locationReason'];
                     $locationKp->locationUser = Auth::user()->id;
                     $locationKp->locationStatus="Pending";
                     $locationKp->save();
 
-                    return redirect()->route('dashboard')->with('success','Data created successfully');
+                    return redirect()->route('student.application.kp.all')->with('success','Data created successfully');
                     // return response()->json(['message' => 'Data created successfully'], 200);
                 } else {
                     return response()->json(['error' => 'Photo upload failed'], 400);

@@ -20,14 +20,28 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'studentId',
+        'lectureId',
+        'roleuser'
     ];
 
-    public function studens(){
+    public function students(){
         return $this->belongsTo(Students::class, 'studentId');
     }
     public function lectures(){
-        return $this->belongsTo(Lectures::class, 'studentId');
+        return $this->belongsTo(Lectures::class, 'lectureId');
     }
+
+    public function locations()
+    {
+        return $this->hasMany(LocationKP::class, 'locationUser');
+    }
+
+    public function recognitions()
+    {
+        return $this->hasMany(Recognition::class, 'recognitionUser');
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

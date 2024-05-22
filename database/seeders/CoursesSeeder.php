@@ -15,6 +15,16 @@ class CoursesSeeder extends Seeder
     public function run(): void
     {
         Courses::factory()->count(15)->create();
-        MBKMCourses::factory()->count(4)->create();
+
+        $courses = [
+            ['name' => 'Bangkit', 'duration' => '6 months'],
+            ['name' => 'Kampus Merdeka', 'duration' => '12 months'],
+            ['name' => 'Internship', 'duration' => '3 months'],
+            ['name' => 'Independent Study', 'duration' => '4 months'],
+        ];
+
+        foreach ($courses as $course) {
+            MBKMCourses::factory()->setCourseData($course)->create();
+        }
     }
 }

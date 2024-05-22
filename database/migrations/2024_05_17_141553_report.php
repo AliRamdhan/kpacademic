@@ -15,9 +15,11 @@ return new class extends Migration
             $table->bigIncrements('reportId');
             $table->string('reportTitle');
             $table->string('reportDate');
-            $table->unsignedBigInteger('reportKp');
-            $table->unsignedBigInteger('reportRecognition');
+            $table->unsignedBigInteger('reportKp')->nullable();
+            $table->unsignedBigInteger('reportRecognition')->nullable();
+            $table->unsignedBigInteger('reportUser');
 
+            $table->foreign('reportUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('reportKp')->references('locationId')->on('locationKP')->onDelete('cascade');
             $table->foreign('reportRecognition')->references('recognitionId')->on('recognitions')->onDelete('cascade');
             $table->timestamps();

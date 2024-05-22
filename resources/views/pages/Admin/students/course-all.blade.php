@@ -2,8 +2,16 @@
     <div class="w-full py-2">
         <div>
             <div class="text-gray-900">
-                <div class="p-4">
-                    <p class="text-3xl font-bold">List All Courses Activity</p>
+                <div class="w-full flex justify-between py-4 border-b-2">
+                    <div class="px-4">
+                        <p class="text-3xl font-bold">List All Courses</p>
+                    </div>
+                    <div>
+                        <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                            href="{{ route('admin.course.form') }}">
+                            New Courses
+                        </a>
+                    </div>
                 </div>
                 <div class="w-fulloverflow-x-auto">
                     <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">

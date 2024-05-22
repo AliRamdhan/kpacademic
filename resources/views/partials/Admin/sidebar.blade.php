@@ -6,9 +6,44 @@
 
         <ul class="mt-6 space-y-1">
             <li>
-                <a href="{{route('admin.dashboard')}}" class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
                     Dashboard
                 </a>
+            </li>
+
+            <li>
+                <details class="group [&_summary::-webkit-details-marker]:hidden">
+                    <summary
+                        class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                        <span class="text-sm font-medium"> Supervisor </span>
+
+                        <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </summary>
+
+                    <ul class="mt-2 space-y-1 px-4">
+                        <li>
+                            <a href="{{ route('admin.supervisor.all') }}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Supervisor All
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('admin.supervisor.create') }}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Create Supervisor
+                            </a>
+                        </li>
+                    </ul>
+                </details>
             </li>
 
             <li>
@@ -36,15 +71,21 @@
                         </li>
 
                         <li>
-                            <a href="#"
+                            <a href="{{route('admin.student.kp.all')}}"
                                 class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                                 Student Conversion
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{route('admin.student.recognition.all')}}"
                                 class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                                 Student KP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.student.account.all') }}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Student Accounts
                             </a>
                         </li>
                     </ul>
@@ -75,6 +116,52 @@
                                 Lectures All
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.lecture.account.all') }}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Lectures Accounts
+                            </a>
+                        </li>
+                    </ul>
+                </details>
+            </li>
+
+            <li>
+                <details class="group [&_summary::-webkit-details-marker]:hidden">
+                    <summary
+                        class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                        <span class="text-sm font-medium"> Recognition Courses </span>
+
+                        <span class="shrink-0 transition duration-300 group-open:-rotate-180">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </span>
+                    </summary>
+
+                    <ul class="mt-2 space-y-1 px-4">
+                        <li>
+                            <a href="{{route('admin.recognition.all')}}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Recognition All
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.recognition.approval.all')}}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Recognition Approval
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.recognition.reports.all')}}"
+                                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                                Recognition Report
+                                {{-- bukti pelaksanaan  --}}
+                            </a>
+                        </li>
                     </ul>
                 </details>
             </li>
@@ -97,22 +184,23 @@
 
                     <ul class="mt-2 space-y-1 px-4">
                         <li>
-                            <a href="#"
+                            <a href="{{route('admin.location.all')}}"
                                 class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                                Magang
+                                KP All
                             </a>
                         </li>
 
                         <li>
-                            <a href="#"
+                            <a href="{{route('admin.location.approval.all')}}"
                                 class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                                MBKM
+                                KP Approval
                             </a>
                         </li>
                         <li>
-                            <a href="#"
+                            <a href="{{route('admin.location.reports.all')}}"
                                 class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                                Bangkit
+                                KP Report
+                                {{-- bukti pelaksanaan  --}}
                             </a>
                         </li>
                     </ul>
@@ -184,7 +272,8 @@
                         </li>
 
                         <li>
-                            <form action="#">
+                            <form action="{{route('logout')}}" method="POST">
+                                @csrf
                                 <button type="submit"
                                     class="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700">
                                     Logout

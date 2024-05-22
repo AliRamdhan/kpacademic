@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('recognitions', function (Blueprint $table) {
             $table->bigIncrements('recognitionId');
+            $table->string('recognitionStatus');
+            $table->string('recognitionReason');
+            $table->string('recognitionProof');
+            $table->date('recognitionDate');;
             $table->unsignedBigInteger('recognitionUser');
             $table->unsignedBigInteger('recognitionCourse');
             $table->unsignedBigInteger('recognitionActivity');
-            $table->string('recognitionStatus');
-            $table->date('recognitionDate');;
 
-            $table->foreign('recognitionUser')->references('studentId')->on('students')->onDelete('cascade');
+            $table->foreign('recognitionUser')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('recognitionCourse')->references('coursesId')->on('courses')->onDelete('cascade');
             $table->foreign('recognitionActivity')->references('mbkmCoursesId')->on('mbkmCourses')->onDelete('cascade');
 

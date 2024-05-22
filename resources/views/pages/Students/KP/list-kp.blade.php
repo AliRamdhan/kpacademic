@@ -15,18 +15,27 @@
                 </thead>
 
                 <tbody class="divide-y divide-gray-200">
-                    @foreach ($kps as $kp)
-                        <tr class="text-center">
-                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">{{ $kp->locationName }}
-                            </td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center items-center">
-                                <img src="{{ asset('uploads/kpslocation/' . $kp->locationProof) }}" alt="Proof Image"
-                                    class="w-20 h-20">
-                            </td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $kp->locationStatus }}</td>
-                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $kp->created_at }}</td>
+                    @if ($kps->isNotEmpty())
+                        @foreach ($kps as $kp)
+                            <tr class="text-center">
+                                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                    {{ $kp->locationName }}
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center items-center">
+                                    <img src="{{ asset('uploads/kpslocation/' . $kp->locationProof) }}"
+                                        alt="Proof Image" class="w-20 h-20">
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $kp->locationStatus }}</td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $kp->created_at }}</td>
+                            </tr>
+                        @endforeach
+                    @else
+                        <tr class="w-full h-20 text-center">
+                            <td colspan="6" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Not create
+                                location kp yet</td>
                         </tr>
-                    @endforeach
+                    @endif
+
                 </tbody>
             </table>
         </div>
