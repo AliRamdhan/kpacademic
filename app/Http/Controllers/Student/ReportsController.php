@@ -35,31 +35,46 @@ class ReportsController extends Controller
     }
 
     public function createReport(){
-        $recognitions = Recognition::where('recognitionUser', Auth::user()->id)->get();
-        $locations = LocationKP::where('locationUser', Auth::user()->id)->get();
+        $recognitions = Recognition::where('recognitionUser', Auth::user()->id)->where('recognitionStatus','Approve')->get();
+        $locations = LocationKP::where('locationUser', Auth::user()->id)->where('locationStatus','Approve')->get();
         return view('pages.Students.reports.create-reports', compact('recognitions','locations'));
     }
 
     public function createReportProcess(Request $request){
         try{
             $validate = $request->validate([
+                'reportProof' => 'required',
                 'reportTitle' => 'required',
+                'reportDuration' => 'required',
             ]);
+            if ($request->hasFile('reportProof')) {
+                $image = $request->file('reportProof');
+                $filename = Str::random(8) . '.' . $image->getClientOriginalExtension();
+                $destinationPath = public_path('uploads/reportapply');
 
-            $reports = new Reports;
-            $reports->reportTitle = $validate['reportTitle'];
-            $reports->reportDate = Carbon::now();
-            $reports->reportKp = $request->reportKp;
-            $reports->reportUser = Auth::user()->id;
-            $reports->reportRecognition = $request->reportRecognition;
-            $reports->save();
-            return redirect()->route('student.application.reports.all')->with('succes','Success Create data');
+                // Check if the directory exists and is writable
+                if (!is_dir($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+                if ($image->move($destinationPath, $filename)) {
+                    $reports = new Reports;
+                    $reports->reportTitle = $validate['reportTitle'];
+                    $reports->reportProof = $filename;
+                    $reports->reportDuration = $validate['reportDuration'];
+                    $reports->reportDate = Carbon::now();
+                    $reports->reportKp = $request->reportKp;
+                    $reports->reportUser = Auth::user()->id;
+                    $reports->reportRecognition = $request->reportRecognition;
+                    $reports->save();
+                    return redirect()->route('student.application.reports.all')->with('succes','Success Create data');
+                }
+                return response()->json(['error' => 'Photo upload failed'], 400);
+            }
             // return response()->json(['message' => 'Data created successfully'], 200);
-
-            // return response()->json(['error' => 'Failed to create data: ' . $e->getMessage()], 400);
+            return response()->json(['error' => 'Photo upload failed'], 400);
         } catch (\Exception $e) {
             // Log the error for debugging
-            Log::error('Error creating membership: ' . $e->getMessage());
+            Log::error('Error creating reports');
 
             // Return error response
             return response()->json(['error' => 'Failed to create data: ' . $e->getMessage()], 400);

@@ -11,7 +11,7 @@
                 </p>
             </div>
 
-            <form action="{{ route('student.application.reports.process') }}" method="post"
+            <form action="{{ route('student.application.reports.process') }}" method="post" enctype="multipart/form-data"
                 class="mx-auto w-full mb-0 mt-8 space-y-4">
                 @csrf
                 <div>
@@ -19,6 +19,26 @@
 
                     <div class="relative">
                         <input type="text" name="reportTitle"
+                            class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter your title reports" />
+                    </div>
+                </div>
+                <div>
+                    <label for="reportDuration">Reports Duration</label>
+
+                    <select id="reportDuration" name="reportDuration" required
+                        class="w-full rounded-lg border-gray-200 px-4 py-3 pe-12 text-base shadow-sm">
+                        <option value="">Select Duration</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="reportProof">Reports Proven</label>
+
+                    <div class="relative">
+                        <input type="file" name="reportProof"
                             class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                             placeholder="Enter your title reports" />
                     </div>
@@ -37,19 +57,28 @@
                         <select name="reportRecognition" id="reportRecognition"
                             class="w-full rounded-lg border-gray-200 px-4 py-3 pe-12 text-sm shadow-sm">
                             <option value="">Select Your Recognition</option>
-                            @foreach ($recognitions as $recognition)
-                                <option value="{{ $recognition->recognitionId }}">{{ $recognition->recognitionReason }}
-                                </option>
-                            @endforeach
+                            @if ($recognitions)
+                                @foreach ($recognitions as $recognition)
+                                    <option value="{{ $recognition->recognitionId }}">
+                                        {{ $recognition->recognitionReason }}
+                                    </option>
+                                @endforeach
+                            @else
+                                <option value="">Not Recognition Data Reports</option>
+                            @endif
                         </select>
                     </div>
                     <div class="relative w-full" id="locationSelect" style="display: none;">
                         <select name="reportKp" id="reportKp"
                             class="w-full rounded-lg border-gray-200 px-4 py-3 pe-12 text-sm shadow-sm">
                             <option value="">Select Your Reports</option>
-                            @foreach ($locations as $location)
-                                <option value="{{ $location->locationId }}">{{ $location->locationName }}</option>
-                            @endforeach
+                            @if ($locations)
+                                @foreach ($locations as $location)
+                                    <option value="{{ $location->locationId }}">{{ $location->locationName }}</option>
+                                @endforeach
+                            @else
+                                <option value="">Not Locations Data Reports</option>
+                            @endif
                         </select>
                     </div>
                 </div>

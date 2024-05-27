@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use App\Models\User;
+use App\Models\AllocationSupervisor;
 class ProfileController extends Controller
 {
     /**
@@ -16,10 +17,20 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $user = User::where('id',Auth::user()->id)->first();
+        $supervisors = AllocationSupervisor::where('alocStudent',$user->students->studentId)->get();
         return view('profile.edit', [
             'user' => $request->user(),
-        ]);
+        ], compact('supervisors'));
     }
+
+    // public function profileInform(Request $request): View
+    // {
+
+    //     return view('profile.partials.profile-information-form',);
+    // }
+
+
 
     /**
      * Update the user's profile information.

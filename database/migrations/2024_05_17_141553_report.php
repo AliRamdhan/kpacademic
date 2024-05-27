@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('reportId');
-            $table->string('reportTitle');
+            $table->text('reportTitle');
+            $table->string('reportDuration');
+            $table->string('reportProof');
             $table->string('reportDate');
             $table->unsignedBigInteger('reportKp')->nullable();
             $table->unsignedBigInteger('reportRecognition')->nullable();

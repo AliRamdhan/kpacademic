@@ -36,6 +36,22 @@
                                         {{ $courses->coursesLecture }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                         {{ $courses->coursesDate }}</td>
+                                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex gap-2">
+                                        <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+                                            href="{{ route('admin.course.edit.form', ['courseId' => $courses->coursesId]) }}">
+                                            Edit
+                                        </a>
+                                        <form
+                                            action="{{ route('admin.course.delete.form.process', ['courseId' => $courses->coursesId]) }}"
+                                            method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <button
+                                                class="inline-block rounded border border-indigo-600 bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

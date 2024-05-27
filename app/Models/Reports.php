@@ -12,6 +12,8 @@ class Reports extends Model
     protected $primaryKey = 'reportId';
     protected $fillable = [
         'reportTitle',
+        'reportDuration',
+        'reportProof',
         'reportDate',
         'reportKp',
         'reportRecognition',

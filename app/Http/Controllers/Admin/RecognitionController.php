@@ -24,7 +24,8 @@ class RecognitionController extends Controller
         if ($recognition) {
             $recognition->recognitionStatus = "Approve"; // Always setting it to "Approve"
             $recognition->save();
-            return response()->json(['message' => 'Data updated successfully'], 201);
+            return redirect()->route('admin.recognition.all')->with('success','success approve');
+            // return response()->json(['message' => 'Data updated successfully'], 201);
         }
         return response()->json(['message' => 'Recognition not found'], 404);
     }

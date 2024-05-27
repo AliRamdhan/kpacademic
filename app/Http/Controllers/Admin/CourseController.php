@@ -38,6 +38,39 @@ class CourseController extends Controller
         return response()->json(['message' => 'Failed to created data'], 400);
     }
 
+    public function editdatacourses($courseId){
+        $course = Courses::where('coursesId', $courseId)->first();
+        return view('pages.Admin.students.crud.edit-course',compact('course'));
+    }
+
+    public function editdatacoursesprocess(Request $request, $courseId){
+        $oldCourse = Courses::where('coursesId', $courseId)->first();
+        if (!$oldCourse) {
+           return response()->json(['error' => 'Courses not found'], 404);
+        }
+        try{
+            $oldCourse->coursesName = $request->coursesName ?? $oldCourse->coursesName;
+            $oldCourse->coursesSKS = $request->coursesSKS ?? $oldCourse->coursesSKS;
+            $oldCourse->coursesLecture = $request->coursesLecture ?? $oldCourse->coursesLecture;
+            $oldCourse->coursesDate = $request->coursesDate ?? $oldCourse->coursesDate;
+            $oldCourse->save();
+
+            return redirect()->route('admin.course.all')->with('success','Data edited successfully');
+            // return response()->json(['message' => 'Data created successfully'], 200);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error edit membership: ' . $e->getMessage());
+
+            // Return error response
+            return response()->json(['error' => 'Failed to create data: ' . $e->getMessage()], 400);
+        }
+    }
+
+    public function deletedatacourses($courseId){
+        $lecture = Courses::where('coursesId', $courseId)->delete();
+        return redirect()->route('admin.course.all')->with('success','Data created successfully');
+    }
+
     //mbkm
     public function mbkmcourseall(){
         $mbkmcourses = MBKMCourses::all();
@@ -59,8 +92,40 @@ class CourseController extends Controller
             $courses->mbkmCoursesName=$validate['mbkmCoursesName'];
             $courses->mbkmCoursesDuration=$validate['mbkmCoursesDuration'];
             $courses->save();
-            return response()->json(['message' => 'Data created successfully'], 200);
+            return redirect()->route('admin.course.mbkm.all')->with('success','Data edited successfully');
+            // return response()->json(['message' => 'Data created successfully'], 200);
         }
         return response()->json(['message' => 'Failed to created data'], 400);
+    }
+
+    public function editdatambkm($mbkmCoursesId){
+        $mbkm = MBKMCourses::where('mbkmCoursesId', $mbkmCoursesId)->first();
+        return view('pages.Admin.students.crud.edit-mbkm',compact('mbkm'));
+    }
+
+    public function editdatambkmprocess(Request $request, $mbkmCoursesId){
+        $oldMbkmCourses = MBKMCourses::where('mbkmCoursesId', $mbkmCoursesId)->first();
+        if (!$oldMbkmCourses) {
+           return response()->json(['error' => 'Courses not found'], 404);
+        }
+        try{
+            $oldMbkmCourses->mbkmCoursesName = $request->mbkmCoursesName ?? $oldMbkmCourses->mbkmCoursesName;
+            $oldMbkmCourses->mbkmCoursesDuration = $request->mbkmCoursesDuration ?? $oldMbkmCourses->mbkmCoursesDuration;
+            $oldMbkmCourses->save();
+
+            return redirect()->route('admin.course.mbkm.all')->with('success','Data edited successfully');
+            // return response()->json(['message' => 'Data created successfully'], 200);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error edit membership: ' . $e->getMessage());
+
+            // Return error response
+            return response()->json(['error' => 'Failed to create data: ' . $e->getMessage()], 400);
+        }
+    }
+
+    public function deletedatambkm($mbkmCoursesId){
+        $mbkm = MBKMCourses::where('mbkmCoursesId', $mbkmCoursesId)->delete();
+        return redirect()->route('admin.course.mbkm.all')->with('success','Data created successfully');
     }
 }

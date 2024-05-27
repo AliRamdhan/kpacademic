@@ -25,7 +25,7 @@ class LocationKPController extends Controller
             $location->locationStatus = "Approve"; // Always setting it to "Approve"
             $location->save();
             // return response()->json(['message' => 'Data updated successfully'], 201);
-            return redirect()->route('student.application.kp.all')->with('succes','Succes created succesfully');
+            return redirect()->route('admin.student.kp.all')->with('succes','Succes created succesfully');
         }
         return response()->json(['message' => 'Recognition not found'], 404);
     }

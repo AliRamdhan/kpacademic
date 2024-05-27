@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('recognitions', function (Blueprint $table) {
             $table->bigIncrements('recognitionId');
+            $table->string('recognitionName');
             $table->string('recognitionStatus');
-            $table->string('recognitionReason');
+            $table->text('recognitionReason');
             $table->string('recognitionProof');
             $table->date('recognitionDate');;
+
             $table->unsignedBigInteger('recognitionUser');
             $table->unsignedBigInteger('recognitionCourse');
             $table->unsignedBigInteger('recognitionActivity');

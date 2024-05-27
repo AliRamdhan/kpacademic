@@ -24,12 +24,12 @@
     <main class="w-full min-h-screen">
         <section class="w-full flex">
             @include('partials.Admin.sidebar')
-            <div class="w-full relative flex flex-col justify-between items-center border border-black">
+            <div class="w-full relative flex flex-col justify-between items-center">
                 @include('partials.Admin.navigation-admin')
                 <div class="w-full pt-32 px-8">
                     {{ $slot }}
                 </div>
-                @include('partials.footer')
+                {{-- @include('partials.footer') --}}
             </div>
         </section>
     </main>

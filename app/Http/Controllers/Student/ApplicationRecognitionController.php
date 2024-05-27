@@ -30,6 +30,7 @@ class ApplicationRecognitionController extends Controller
     public function createrecognitionprocess(Request $request){
         try{
             $validate = $request->validate([
+                'recognitionName' => 'required',
                 'recognitionCourse' => 'required',
                 'recognitionActivity' => 'required',
                 // 'recognitionStatus' => 'required',
@@ -50,6 +51,7 @@ class ApplicationRecognitionController extends Controller
                     $recognition = new Recognition();
                     $recognition->recognitionUser = Auth::user()->id;
                     $recognition->recognitionProof = $filename;
+                    $recognition->recognitionName=$validate["recognitionName"];
                     $recognition->recognitionReason= $validate['recognitionReason'];
                     $recognition->recognitionCourse = $validate['recognitionCourse'];
                     $recognition->recognitionActivity = $validate['recognitionActivity'];

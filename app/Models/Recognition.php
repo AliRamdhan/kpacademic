@@ -11,6 +11,7 @@ class Recognition extends Model
     protected $table = 'recognitions';
     protected $primaryKey = 'recognitionId';
     protected $fillable = [
+        'recognitionName',
         'recognitionReason',
         'recognitionProof',
         'recognitionUser',

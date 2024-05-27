@@ -58,6 +58,7 @@ class AllocationSupervisorController extends Controller
         $supervisors = AllocationSupervisor::all();
         return view('pages.Admin.supervisor.supervisor-all',compact('supervisors'));
     }
+
     public function supervisorcreate(){
         //$supervisors = AllocationSupervisor::all();
         $lectures = Lectures::all();
@@ -87,5 +88,38 @@ class AllocationSupervisorController extends Controller
             // Return error response
             return response()->json(['error' => 'Failed to create data: ' . $e->getMessage()], 400);
         }
+    }
+
+    public function supervisoredit($alocId){
+        $lectures = Lectures::all();
+        $students = Students::all();
+        $supervisor = AllocationSupervisor::where('alocId', $alocId)->first();
+        return view('pages.Admin.supervisor.supervisor-edit',compact('supervisor','lectures','students'));
+    }
+
+    public function supervisoreditprocess(Request $request, $alocId){
+        $oldsupervisor = AllocationSupervisor::where('alocId', $alocId)->first();
+        if (!$oldsupervisor) {
+           return response()->json(['error' => 'Supervisor not found'], 404);
+        }
+        try{
+            $oldsupervisor->alocName = $request->alocName ?? $oldsupervisor->alocName;
+            $oldsupervisor->alocStudent = $request->alocStudent ?? $oldsupervisor->alocStudent;
+            $oldsupervisor->alocSupervisor = $request->alocSupervisor ?? $oldsupervisor->alocSupervisor;
+            $oldsupervisor->save();
+
+            return redirect()->route('admin.supervisor.all')->with('success','Data created successfully');
+            // return response()->json(['message' => 'Data created successfully'], 200);
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            Log::error('Error edit membership: ' . $e->getMessage());
+
+            // Return error response
+            return response()->json(['error' => 'Failed to create data: ' . $e->getMessage()], 400);
+        }
+    }
+    public function supervisordeleteprocess($alocId){
+        $oldsupervisor = AllocationSupervisor::where('alocId', $alocId)->delete();
+        return redirect()->route('admin.supervisor.all')->with('success','Data created successfully');
     }
 }

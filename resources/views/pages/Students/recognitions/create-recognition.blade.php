@@ -11,9 +11,18 @@
                 </p>
             </div>
 
-            <form action="{{ route('student.application.recognition.process') }}" enctype="multipart/form-data" method="post"
-                class="mx-auto w-full mb-0 mt-8 space-y-4">
+            <form action="{{ route('student.application.recognition.process') }}" enctype="multipart/form-data"
+                method="post" class="mx-auto w-full mb-0 mt-8 space-y-4">
                 @csrf
+                <div>
+                    <label for="recognitionName" class="sr-only">Recognition Name</label>
+
+                    <div class="relative">
+                        <input type="text" name="recognitionName"
+                            class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                            placeholder="Enter your recognition title" />
+                    </div>
+                </div>
                 <div>
                     <label for="recognitionReason" class="sr-only">Recognition Reason</label>
 
