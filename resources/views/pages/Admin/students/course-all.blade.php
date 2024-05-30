@@ -20,8 +20,8 @@
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Course Name</th>
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Number of Credits</th>
 
-                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Course Lecturer</th>
-                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Courses Date</th>
+                                {{-- <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Course Lecturer</th>
+                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Courses Date</th> --}}
                             </tr>
                         </thead>
 

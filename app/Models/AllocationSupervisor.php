@@ -10,7 +10,7 @@ class AllocationSupervisor extends Model
     use HasFactory;
     protected $table = 'alocationSupervisor';
     protected $primaryKey = 'alocId';
-    protected $fillable = [ 'alocName','alocStudent','alocSupervisor' ];
+    protected $fillable = [ 'alocName','alocStudent','alocSupervisor','userId','isApply' ];
 
     public function students(){
         return $this->belongsTo(Students::class, 'alocStudent', 'studentId');

@@ -21,7 +21,7 @@ class LecturesFactory extends Factory
     {
         return [
             'lectureName' => $this->faker->name,
-            'lectureDepartment' => $this->faker->randomElement(['Informatika', 'Sistem Informasi', 'Teknik Komputer']),
+            'lectureConcentration' => $this->faker->randomElement(['Informatika', 'Sistem Informasi', 'Teknik Komputer']),
         ];
     }
 }

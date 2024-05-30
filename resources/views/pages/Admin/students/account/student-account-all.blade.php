@@ -6,12 +6,12 @@
                     <div class="px-4">
                         <p class="text-3xl font-bold">List All Student Account</p>
                     </div>
-                    <div>
+                    {{-- <div>
                         <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                             href="{{ route('admin.student.account.create') }}">
                             Create Student Account
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="w-full py-4 overflow-x-auto">
                     <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
@@ -19,10 +19,10 @@
                             <tr>
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Account Name</th>
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Email</th>
-                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Full Name</th>
-                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">NIM</th>
+                                {{-- <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Full Name</th> --}}
+                                {{-- <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">NIM</th>
                                 <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Prodi</th>
-                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Semester</th>
+                                <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Semester</th> --}}
                             </tr>
                         </thead>
 
@@ -33,14 +33,14 @@
                                         {{ $user->name }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                         {{ $user->email }}</td>
-                                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                    {{-- <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                         {{ $user->students->studentName }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                         {{ $user->students->studentNim }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                         {{ $user->students->studentProdi }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                                        {{ $user->students->studentSemester }}</td>
+                                        {{ $user->students->studentSemester }}</td> --}}
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 flex gap-2">
                                         <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                                             href="{{ route('admin.student.account.edit', ['account' => $user->id]) }}">

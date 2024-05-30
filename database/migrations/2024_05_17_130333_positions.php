@@ -25,19 +25,11 @@ return new class extends Migration
         Schema::create('lectures', function (Blueprint $table) {
             $table->bigIncrements('lectureId');
             $table->string('lectureName');
-            $table->string('lectureDepartment');
+            $table->string('lectureConcentration');
             $table->timestamps();
         });
 
-        Schema::create('alocationSupervisor', function (Blueprint $table) {
-            $table->bigIncrements('alocId');
-            $table->string('alocName');
-            $table->unsignedBigInteger('alocStudent');
-            $table->foreign('alocStudent')->references('studentId')->on('students')->onDelete('cascade');
-            $table->unsignedBigInteger('alocSupervisor');
-            $table->foreign('alocSupervisor')->references('lectureId')->on('lectures')->onDelete('cascade');
-            $table->timestamps();
-        });
+
     }
 
     /**
@@ -45,7 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('alocationSupervisor');
+
         Schema::dropIfExists('students');
         Schema::dropIfExists('lectures');
     }

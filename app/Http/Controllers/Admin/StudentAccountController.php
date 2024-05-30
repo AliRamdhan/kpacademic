@@ -11,7 +11,7 @@ class StudentAccountController extends Controller
 {
     // List All
     public function index(){
-        $users = User::whereNotNull('studentId')->get();
+        $users = User::where('roleUser',2)->get();
         return view('pages.Admin.students.account.student-account-all', compact('users'));
     }
 

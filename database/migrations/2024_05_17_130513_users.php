@@ -19,10 +19,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedBigInteger('roleuser')->default(2);;
-            $table->unsignedBigInteger('studentId')->nullable();
+            // $table->unsignedBigInteger('studentId')->nullable();
             $table->unsignedBigInteger('lectureId')->nullable();
 
-            $table->foreign('studentId')->references('studentId')->on('students')->onDelete('cascade');
+            // $table->foreign('studentId')->references('studentId')->on('students')->onDelete('cascade');
             $table->foreign('lectureId')->references('lectureId')->on('lectures')->onDelete('cascade');
             $table->foreign('roleuser')->references('roleId')->on('roles')->onDelete('cascade');
 

@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $user = User::where('id',Auth::user()->id)->first();
-        $supervisors = AllocationSupervisor::where('alocStudent',$user->students->studentId)->get();
+        $supervisors = AllocationSupervisor::where('userId',Auth::user()->id)->get();
         return view('profile.edit', [
             'user' => $request->user(),
         ], compact('supervisors'));

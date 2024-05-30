@@ -11,11 +11,17 @@
                     Dashboard
                 </a>
             </li>
-
             <li>
                 <a href="{{ route('lecture.supervise.student') }}"
                     class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
                     Students Supervise
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('lecture.supervise.student.approve') }}"
+                    class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700">
+                    Students Supervise Approve
                 </a>
             </li>
 

@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex flex-col lg:flex-row gap-x-4">
+                {{-- <div class="w-full flex flex-col lg:flex-row gap-x-4">
                     <div class="flex-1">
                         <label for="coursesDate" class="sr-only">Name</label>
                         <div class="relative">
@@ -51,7 +51,7 @@
                                 placeholder="Enter Course Lecture" />
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-x-4 pt-4">
                     <div></div>
                     <div class="w-full flex justify-end">

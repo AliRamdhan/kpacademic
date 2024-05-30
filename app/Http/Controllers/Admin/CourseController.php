@@ -23,19 +23,20 @@ class CourseController extends Controller
         $validate = $request->validate([
             'coursesName' => 'required',
             'coursesSKS' => 'required',
-            'coursesLecture' => 'required',
-            'coursesDate' => 'required',
+            // 'coursesLecture' => 'required',
+            // 'coursesDate' => 'required',
         ]);
         if($validate){
             $courses = new Courses;
             $courses->coursesName=$validate['coursesName'];
             $courses->coursesSKS=$validate['coursesSKS'];
-            $courses->coursesLecture=$validate['coursesLecture'];
-            $courses->coursesDate=$validate['coursesDate'];
+            // $courses->coursesLecture=$validate['coursesLecture'];
+            // $courses->coursesDate=$validate['coursesDate'];
             $courses->save();
-            return response()->json(['message' => 'Data created successfully'], 200);
+            // return response()->json(['message' => 'Data created successfully'], 200);
+            return redirect()->route('admin.course.all')->with('success','Data created successfully');
         }
-        return response()->json(['message' => 'Failed to created data'], 400);
+        return redirect()->route('admin.course.all')->with('success','Failed to created data');
     }
 
     public function editdatacourses($courseId){
@@ -95,7 +96,7 @@ class CourseController extends Controller
             return redirect()->route('admin.course.mbkm.all')->with('success','Data edited successfully');
             // return response()->json(['message' => 'Data created successfully'], 200);
         }
-        return response()->json(['message' => 'Failed to created data'], 400);
+        return redirect()->route('admin.course.all')->with('success','Failed to created data');
     }
 
     public function editdatambkm($mbkmCoursesId){

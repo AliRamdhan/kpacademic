@@ -20,8 +20,8 @@ class CoursesFactory extends Factory
         return [
             'coursesName' => $this->faker->words(3, true),
             'coursesSKS' => $this->faker->numberBetween(1, 4),
-            'coursesLecture' => $this->faker->name,
-            'coursesDate' => $this->faker->date
+            // 'coursesLecture' => $this->faker->name,
+            // 'coursesDate' => $this->faker->date
         ];
     }
 }

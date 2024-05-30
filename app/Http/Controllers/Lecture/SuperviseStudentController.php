@@ -11,9 +11,32 @@ use App\Models\Reports;
 
 class SuperviseStudentController extends Controller
 {
+    public function studentsupervisedataapprove(){
+        $lecture = Auth::user()->lectures->lectureId;
+        $students = AllocationSupervisor::where('alocSupervisor', $lecture)
+        ->where('isApply', 'Pending')
+        ->whereNotNull('userId') // Check if userId is not null
+        ->get();
+        return view('pages.Lecture.student-supervised-approve',compact('students'));
+    }
+    public function studentsupervisedataapproveprocess($alocId){
+        $lecture = Auth::user()->lectures->lectureId;
+        // $students = AllocationSupervisor::where('alocSupervisor', $lecture)
+        // ->where('isApply', 'Pending')
+        // ->whereNotNull('userId') // Check if userId is not null
+        // ->get();
+        AllocationSupervisor::where('alocId',$alocId)->where('alocSupervisor',$lecture)->where('isApply', 'Pending')
+        ->whereNotNull('userId')
+        ->update(['isApply'=> 'Approve']);
+        return redirect()->back()->with('success', 'Dospem approve successfully!');
+    }
+
     public function studentsupervisedata(){
         $lecture = Auth::user()->lectures->lectureId;
-        $students = AllocationSupervisor::where('alocSupervisor',$lecture)->get();
+        $students = AllocationSupervisor::where('alocSupervisor', $lecture)
+        ->where('isApply', 'Approve')
+        ->whereNotNull('userId') // Check if userId is not null
+        ->get();
         return view('pages.Lecture.student-supervised',compact('students'));
     }
 

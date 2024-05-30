@@ -15,13 +15,37 @@ class SuperviseLocationController extends Controller
 
     public function studentsuperviselocationdata()
     {
-        $lecture = Auth::user()->lectures->lectureId;
-        $students = AllocationSupervisor::where('alocSupervisor', $lecture)
-                                         ->with(['students.user'])
-                                         ->get();
 
-        $studentIds = $students->pluck('students.user.id')->filter()->all();
-        $locations = LocationKP::whereIn('locationUser', $studentIds)->get();
+        // $lecture = Auth::user()->lectures->lectureId;
+
+        // // Retrieve AllocationSupervisor records where the supervisor is the authenticated user and isApply is 'Approve'
+        // $students = AllocationSupervisor::where('alocSupervisor', $lecture)
+        //     ->where('isApply', 'Approve')
+        //     ->whereNotNull('userId') // Check if userId is not null
+        //     ->get();
+
+        // // Extract student IDs from AllocationSupervisor records
+        // $studentIds = $students->pluck('userId')->filter()->all();
+
+        // // Fetch Recognition records associated with the extracted student IDs and where the recognition status is 'Pending'
+        // $recognitions = Recognition::whereIn('recognitionUser', $studentIds)
+        //     ->where('recognitionStatus', 'Approve')
+        //     ->get();
+
+        $lecture = Auth::user()->lectures->lectureId;
+        // $students = AllocationSupervisor::where('alocSupervisor', $lecture)
+        //                                  ->with(['students.user'])
+        //                                  ->get();
+        $students = AllocationSupervisor::where('alocSupervisor', $lecture)
+        ->where('isApply', 'Approve')
+        ->whereNotNull('userId') // Check if userId is not null
+        ->get();
+
+        $studentIds = $students->pluck('userId')->filter()->all();
+        // $studentIds = $students->pluck('students.user.id')->filter()->all();
+        $locations = LocationKP::whereIn('locationUser', $studentIds)->where('locationStatus', 'Approve')
+        ->get();
+
 
         return view('pages.Lecture.locationkps.location-supervised-all', compact('students', 'locations'));
     }
@@ -29,14 +53,14 @@ class SuperviseLocationController extends Controller
     public function studentsuperviselocationdataapproval(){
         $lecture = Auth::user()->lectures->lectureId;
         $students = AllocationSupervisor::where('alocSupervisor', $lecture)
-                                         ->with(['students.user'])
-                                         ->get();
+        ->where('isApply', 'Approve')
+        ->whereNotNull('userId') // Check if userId is not null
+        ->get();
 
-        $studentIds = $students->pluck('students.user.id')->filter()->all();
+        $studentIds = $students->pluck('userId')->filter()->all();
 
-        $locations = LocationKP::whereIn('locationUser', $studentIds)
-                                    ->where('locationStatus', 'Pending')
-                                    ->get();
+        $locations = LocationKP::whereIn('locationUser', $studentIds)->where('locationStatus', 'Pending')
+        ->get();
 
         return view('pages.Lecture.locationkps.location-supervised-approval', compact('locations'));
     }

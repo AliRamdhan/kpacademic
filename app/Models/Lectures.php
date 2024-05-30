@@ -10,5 +10,5 @@ class Lectures extends Model
     use HasFactory;
     protected $table = 'lectures';
     protected $primaryKey = 'lectureId';
-    protected $fillable = [ 'lectureName', 'lectureDepartment' ];
+    protected $fillable = [ 'lectureName', 'lectureConcentration' ];
 }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements('coursesId');
             $table->string('coursesName');
             $table->string('coursesSKS');
-            $table->string('coursesLecture');
-            $table->string('coursesDate');
+            // $table->string('coursesLecture');
+            // $table->string('coursesDate');
             $table->timestamps();
         });
 

@@ -14,11 +14,15 @@ use App\Http\Controllers\Admin\AllocationSupervisorController;
 use App\Http\Controllers\Student\ApplicationKpController;
 use App\Http\Controllers\Student\ApplicationRecognitionController;
 use App\Http\Controllers\Student\ReportsController;
+use App\Http\Controllers\Student\DashboardController;
+
 // positions
 use App\Http\Controllers\Admin\PositionsController;
 // lectures
 use App\Http\Controllers\Lecture\SuperviseStudentController;
 use App\Http\Controllers\Lecture\SuperviseLocationController;
+use App\Http\Controllers\Lecture\SuperviseRecognitionController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +30,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified','user'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified','user'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 Route::middleware(['auth', 'user'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::post('/applydospem/{aloc}', [DashboardController::class,'applyDospem'])->name('applyDospem');
     //KP
         //list
     Route::get('application/kp/all', [ApplicationKpController::class,'studentkp'])->name('student.application.kp.all');
@@ -149,11 +155,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware(['auth', 'lecture'])->group(function () {
     Route::get('/lecture/dashboard', [HomeController::class,'dashboardLectures'])->name('lecture.dashboard');
     Route::get('/lecture/supervise', [SuperviseStudentController::class,'studentsupervisedata'])->name('lecture.supervise.student');
+    Route::get('/lecture/supervise/approve', [SuperviseStudentController::class,'studentsupervisedataapprove'])->name('lecture.supervise.student.approve');
+    Route::post('/lecture/supervise/approve/process/{aloc}', [SuperviseStudentController::class,'studentsupervisedataapproveprocess'])->name('lecture.supervise.student.approve.process');
 
         //Recognition
 
-    Route::get('/lecture/supervise/recognition', [SuperviseStudentController::class,'studentsuperviserecognitiondata'])->name('lecture.supervise.student.recognition');
-    Route::get('/lecture/supervise/student/recognition/approval', [SuperviseStudentController::class,'studentsuperviserecognitiondataapproval'])->name('lecture.supervise.student.recognition.approval');
+    Route::get('/lecture/supervise/recognition', [SuperviseRecognitionController::class,'studentsuperviserecognitiondata'])->name('lecture.supervise.student.recognition');
+    Route::get('/lecture/supervise/student/recognition/approval', [SuperviseRecognitionController::class,'studentsuperviserecognitiondataapproval'])->name('lecture.supervise.student.recognition.approval');
     Route::put('/lecture/supervise/student/{recognition}/approval', [SuperviseStudentController::class,'studentsuperviserecognitiondataapprovalprocess'])->name('lecture.supervise.student.recognition.approval.process');
     Route::get('/lecture/supervise/student/recognition/report', [SuperviseStudentController::class,'studentsuperviserecognitiondatareportall'])->name('lecture.supervise.student.recognition.report.all');
     Route::get('/lecture/supervise/student/recognition/report/{report}', [SuperviseStudentController::class,'studentsuperviserecognitiondatareport'])->name('lecture.supervise.student.recognition.report');

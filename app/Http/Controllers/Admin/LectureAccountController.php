@@ -11,7 +11,7 @@ class LectureAccountController extends Controller
 {
     // List All
     public function index(){
-        $users = User::whereNotNull('lectureId')->get();
+        $users = User::where('roleUser',4)->get();
         return view('pages.Admin.lectures.account.lectures-account-all', compact('users'));
     }
 

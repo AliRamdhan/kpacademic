@@ -13,23 +13,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            RoleSeeder::class,
-        ]);
+        // $this->call([
+        //     RoleSeeder::class,
+        // ]);
 
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123'),
-            'roleUser' => 1 // Assuming 1 corresponds to 'Admin' role
-        ]);
+        // User::factory()->create([
+        //     'name' => 'admin',
+        //     'email' => 'admin@gmail.com',
+        //     'password' => bcrypt('admin123'),
+        //     'roleUser' => 1 // Assuming 1 corresponds to 'Admin' role
+        // ]);
+
+        // $this->call([
+        //     LectureSeeder::class,
+        // ]);
+        // $this->call([
+        //     StudentSeeder::class,
+        // ]);
+
+        // $this->call([
+        //     CoursesSeeder::class,
+        // ]);
 
         $this->call([
             PositionsSeeder::class,
-        ]);
-
-        $this->call([
-            CoursesSeeder::class,
         ]);
     }
 }

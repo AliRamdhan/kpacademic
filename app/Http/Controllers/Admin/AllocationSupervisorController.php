@@ -22,25 +22,39 @@ class AllocationSupervisorController extends Controller
         //     $query->with('locations');
         // }])->whereHas('user.locations')->paginate(10);
 
+        // $students = DB::select("
+        //     SELECT students.*, users.name as userName, users.email as userEmail,
+        //         locationKP.locationProof, locationKP.locationName, locationKP.locationStatus
+        //     FROM students
+        //     JOIN users ON students.studentId = users.studentId
+        //     JOIN locationKP ON locationKP.locationUser = users.id
+        // ");
         $students = DB::select("
-            SELECT students.*, users.name as userName, users.email as userEmail,
-                locationKP.locationProof, locationKP.locationName, locationKP.locationStatus
-            FROM students
-            JOIN users ON students.studentId = users.studentId
-            JOIN locationKP ON locationKP.locationUser = users.id
-        ");
+        SELECT students.*, users.name AS userName, users.email AS userEmail,
+            locationKP.locationProof, locationKP.locationName, locationKP.locationStatus
+        FROM students
+        JOIN users ON students.studentId = users.id
+        JOIN locationKP ON locationKP.locationUser = users.id
+    ");
 
         // return response()->json($students);
         return view('pages.Admin.students.student-kp', compact('students'));
     }
     public function studentsconversionrecognitionall(){
+        // $students = DB::select("
+        //     SELECT students.*, users.name as userName, users.email as userEmail,
+        //         recognitions.recognitionReason, recognitions.recognitionProof, recognitions.recognitionStatus
+        //     FROM students
+        //     JOIN users ON students.studentId = users.studentId
+        //     JOIN recognitions ON recognitions.recognitionUser = users.id
+        // ");
         $students = DB::select("
-            SELECT students.*, users.name as userName, users.email as userEmail,
-                recognitions.recognitionReason, recognitions.recognitionProof, recognitions.recognitionStatus
-            FROM students
-            JOIN users ON students.studentId = users.studentId
-            JOIN recognitions ON recognitions.recognitionUser = users.id
-        ");
+        SELECT students.*, users.name AS userName, users.email AS userEmail,
+            recognitions.recognitionReason, recognitions.recognitionProof, recognitions.recognitionStatus
+        FROM students
+        JOIN users ON students.studentId = users.id
+        JOIN recognitions ON recognitions.recognitionUser = users.id
+    ");
         // return response()->json($students);
 
         return view('pages.Admin.students.student-conversion',compact('students'));
