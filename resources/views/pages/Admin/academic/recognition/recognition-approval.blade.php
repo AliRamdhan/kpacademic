@@ -45,8 +45,13 @@
                                         {{ $recognition->MBKMCourses->mbkmCoursesName }} -
                                         {{ $recognition->MBKMCourses->mbkmCoursesDuration }}
                                     </td>
-                                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                    {{-- <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                         {{ $recognition->Courses->coursesName }}
+                                    </td> --}}
+                                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                        @foreach ($recognition->Courses as $course)
+                                            {{ $course->coursesName }},
+                                        @endforeach
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                         {{ $recognition->recognitionDate }}

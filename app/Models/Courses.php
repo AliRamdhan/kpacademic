@@ -16,4 +16,8 @@ class Courses extends Model
         'coursesLecture',
         'coursesDate',
     ];
+    public function recognitions()
+    {
+        return $this->belongsToMany(Recognition::class, 'courses_recognition', 'course_id', 'recognition_id');
+    }
 }

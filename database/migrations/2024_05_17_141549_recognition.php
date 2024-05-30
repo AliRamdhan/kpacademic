@@ -38,6 +38,17 @@ return new class extends Migration
             $table->foreign('proveRecognition')->references('recognitionId')->on('recognitions')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Schema::create('courses_recognition', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('recognition_id');
+            $table->unsignedBigInteger('course_id');
+            $table->timestamps();
+
+            $table->foreign('recognition_id')->references('recognitionId')->on('recognitions')->onDelete('cascade');
+            $table->foreign('course_id')->references('coursesId')->on('courses')->onDelete('cascade');
+        });
+
     }
 
     /**
@@ -45,7 +56,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('course_recognition');
         Schema::dropIfExists('provenRecognition');
         Schema::dropIfExists('recognitions');
+
     }
 };

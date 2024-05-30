@@ -21,7 +21,9 @@
                         @foreach ($recognitions as $recognition)
                             <tr class="text-center">
                                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                    {{ $recognition->Courses->coursesName }}
+                                    @foreach ($recognition->courses as $course)
+                                        {{ $course->coursesName }},
+                                    @endforeach
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                     {{ $recognition->recognitionReason }}

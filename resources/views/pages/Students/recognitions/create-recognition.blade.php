@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="w-full flex justify-between items-center gap-2">
-                    <div class="relative w-full">
+                    {{-- <div class="relative w-full">
                         <select name="recognitionCourse" id="recognitionCourse"
                             class="w-full rounded-lg border-gray-200 px-4 py-3 pe-12 text-sm shadow-sm">
                             <option value="">Select Course</option>
@@ -46,7 +46,31 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div> --}}
+                    {{-- <div class="w-full relative">
+                        <label for="recognitionCourses" class="sr-only">Select Courses</label>
+                        <select name="recognitionCourses[]" id="recognitionCourses" multiple
+                            class="w-full rounded-lg border-gray-200 px-4 py-3 pe-12 text-sm shadow-sm">
+                            <option value="" disabled>Select Courses</option>
+                            @foreach ($courses as $course)
+                                <option value="{{ $course->coursesId }}">{{ $course->coursesName }} (NIM:
+                                    {{ $course->coursesSKS }})</option>
+                            @endforeach
+                        </select>
+                    </div> --}}
+                    <div class="w-full">
+                        <label class="block text-sm font-medium text-gray-700" for="courses[]">Select Courses:</label>
+                        <div class="mt-2 grid grid-cols-1 gap-y-4 gap-x-4 sm:grid-cols-2">
+                            @foreach ($courses as $course)
+                                <div class="flex items-center">
+                                    <input id="course_{{ $course->coursesId }}" name="courses[]" value="{{ $course->coursesId }}" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                                    <label for="course_{{ $course->coursesId }}" class="ml-3 block text-sm font-medium text-gray-700">{{ $course->coursesName }} (NIM: {{ $course->coursesSKS }})</label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
+
+
                     <div class="relative w-full">
                         <select name="recognitionActivity" id="recognitionActivity"
                             class="w-full rounded-lg border-gray-200 px-4 py-3 pe-12 text-sm shadow-sm">

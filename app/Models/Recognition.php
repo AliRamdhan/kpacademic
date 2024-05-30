@@ -21,8 +21,9 @@ class Recognition extends Model
         'recognitionDate',
     ];
 
-    public function Courses(){
-        return $this->belongsTo(Courses::class, 'recognitionCourse');
+    public function courses()
+    {
+        return $this->belongsToMany(Courses::class, 'courses_recognition', 'recognition_id', 'course_id');
     }
 
     public function MBKMCourses(){

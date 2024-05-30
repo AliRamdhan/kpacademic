@@ -31,13 +31,14 @@ class ApplicationRecognitionController extends Controller
         try{
             $validate = $request->validate([
                 'recognitionName' => 'required',
-                'recognitionCourse' => 'required',
+                'courses' => 'required|array',
                 'recognitionActivity' => 'required',
                 // 'recognitionStatus' => 'required',
                 'recognitionReason' => 'required',
                 'recognitionProof' => 'required',
                 // 'recognitionDate' => 'required',
             ]);
+
             if ($request->hasFile('recognitionProof')) {
                 $image = $request->file('recognitionProof');
                 $filename = Str::random(8) . '.' . $image->getClientOriginalExtension();
@@ -53,11 +54,16 @@ class ApplicationRecognitionController extends Controller
                     $recognition->recognitionProof = $filename;
                     $recognition->recognitionName=$validate["recognitionName"];
                     $recognition->recognitionReason= $validate['recognitionReason'];
-                    $recognition->recognitionCourse = $validate['recognitionCourse'];
+                    $recognition->recognitionCourse = 1;
                     $recognition->recognitionActivity = $validate['recognitionActivity'];
                     $recognition->recognitionStatus = "Pending";
                     $recognition->recognitionDate = Carbon::now();
+                    // $recognition->courses()->attach($validate['courses']);
+
                     $recognition->save();
+                                    // Attach courses to the recognition
+                    $recognition->courses()->attach($validate['courses']);
+
                     return redirect()->route('student.application.recognition.all')->with('succes','Succes create data');
                     // return response()->json(['message' => 'Data created successfully'], 200);
                 }

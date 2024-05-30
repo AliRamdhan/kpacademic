@@ -66,8 +66,15 @@
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->reportDate }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
-                                        {{ $report->recognition->Courses->coursesName }} -
-                                        {{ $report->recognition->Courses->coursesSKS }} SKS</td>
+                                        {{-- {{ $report->recognition->Courses->coursesName }} -
+                                        {{ $report->recognition->Courses->coursesSKS }} SKS</td> --}}
+                                    <ul class="flex flex-col gap-2">
+                                        @foreach ($report->recognition->Courses as $course)
+                                            <li>
+                                                {{ $course->coursesName }}
+                                                {{ $course->coursesSKS }}</li>
+                                        @endforeach
+                                    </ul>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->recognition->recognitionReason }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">

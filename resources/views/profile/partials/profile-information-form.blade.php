@@ -9,11 +9,11 @@
         </p> --}}
     </header>
     <div class="mt-6 space-y-6">
-        @if ($user && $user->students && $user->students->isNotEmpty())
+        @if ($students && $students->students)
             <div class="w-full flex gap-8">
                 <div class="flex-1">
                     <x-input-label for="name" :value="__('Full Name')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('studentName', $user->students->studentName)"
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('studentName', $students->students->studentName)"
                         disabled autofocus autocomplete="name" />
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
@@ -21,7 +21,7 @@
                 <div class="flex-1">
                     <x-input-label for="email" :value="__('Student NIM')" />
                     <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
-                        :value="old('studentNim', $user->students->studentNim)" disabled autocomplete="username" />
+                        :value="old('studentNim', $students->students->studentNim)" disabled autocomplete="username" />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
             </div>
@@ -29,21 +29,21 @@
                 <div class="flex-1">
                     <x-input-label for="name" :value="__('Full Name')" />
                     <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                        :value="old('studentProdi', $user->students->studentProdi)" disabled autofocus autocomplete="name" />
+                        :value="old('studentProdi', $students->students->studentProdi)" disabled autofocus autocomplete="name" />
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
 
                 <div class="flex-1">
                     <x-input-label for="email" :value="__('Student NIM')" />
                     <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
-                        :value="old('studentSKS', $user->students->studentSKS)" disabled autocomplete="username" />
+                        :value="old('studentSKS', $students->students->studentSKS)" disabled autocomplete="username" />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
 
                 <div class="flex-1">
                     <x-input-label for="email" :value="__('Student NIM')" />
                     <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
-                        :value="old('studentSemester', $user->students->studentSemester)" disabled autocomplete="username" />
+                        :value="old('studentSemester', $students->students->studentSemester)" disabled autocomplete="username" />
                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
                 </div>
             </div>

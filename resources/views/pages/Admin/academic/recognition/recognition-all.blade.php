@@ -45,7 +45,13 @@
                                         {{ $recognition->MBKMCourses->mbkmCoursesDuration }}
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                                        {{ $recognition->Courses->coursesName }}
+                                        <ul class="flex flex-col gap-2">
+                                            @foreach ($recognition->Courses as $course)
+                                                <li>
+                                                    {{ $course->coursesName }}
+                                                    {{ $course->coursesSKS }}</li>
+                                            @endforeach
+                                        </ul>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                                         {{ $recognition->recognitionStatus }}

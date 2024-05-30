@@ -19,9 +19,10 @@ class ProfileController extends Controller
     {
         $user = User::where('id',Auth::user()->id)->first();
         $supervisors = AllocationSupervisor::where('userId',Auth::user()->id)->get();
+        $students = AllocationSupervisor::where('userId',Auth::user()->id)->first();
         return view('profile.edit', [
             'user' => $request->user(),
-        ], compact('supervisors'));
+        ], compact('supervisors','students'));
     }
 
     // public function profileInform(Request $request): View
