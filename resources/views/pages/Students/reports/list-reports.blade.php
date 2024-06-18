@@ -59,22 +59,45 @@
                                 <tr class="text-center h-16">
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->reportTitle }}</td>
-                                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
+                                    {{-- <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         <img src="{{ asset('uploads/reportapply/' . $report->reportProof) }}"
                                             alt="" srcset="">
+                                    </td> --}}
+                                    <td
+                                        class="whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center items-center">
+                                        @php
+                                            $fileExtension = pathinfo($report->reportProof, PATHINFO_EXTENSION);
+                                        @endphp
+
+                                        @if (in_array($fileExtension, ['png', 'jpg', 'jpeg', 'gif']))
+                                            <img src="{{ asset('uploads/reportapply/' . $report->reportProof) }}"
+                                                alt="Image" class="w-20 h-20">
+                                        @elseif($fileExtension === 'pdf')
+                                            <a href="{{ asset('uploads/reportapply/' . $report->reportProof) }}"
+                                                target="_blank">
+                                                {{-- <i class="fa-solid fa-file-pdf text-red-800 text-3xl"></i> --}}
+                                                <img src="{{ asset('icon/pdf17.svg') }}" alt="pdf icon" class="w-8 h-8">
+
+                                            </a>
+                                        @endif
+
+                                        <a href="{{ asset('uploads/reportapply/' . $report->reportProof) }}" download
+                                            class="ml-2 text-blue-600 hover:text-blue-800">
+                                            Download
+                                        </a>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->reportDate }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{-- {{ $report->recognition->Courses->coursesName }} -
                                         {{ $report->recognition->Courses->coursesSKS }} SKS</td> --}}
-                                    <ul class="flex flex-col gap-2">
-                                        @foreach ($report->recognition->Courses as $course)
-                                            <li>
-                                                {{ $course->coursesName }}
-                                                {{ $course->coursesSKS }}</li>
-                                        @endforeach
-                                    </ul>
+                                        <ul class="flex flex-col gap-2">
+                                            @foreach ($report->recognition->Courses as $course)
+                                                <li>
+                                                    {{ $course->coursesName }}
+                                                    {{ $course->coursesSKS }}</li>
+                                            @endforeach
+                                        </ul>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->recognition->recognitionReason }}</td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
@@ -123,9 +146,33 @@
                                 <tr class="text-center h-16">
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->reportTitle }}</td>
-                                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
+                                    {{-- <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         <img src="{{ asset('uploads/reportapply/' . $report->reportProof) }}"
                                             alt="" srcset="">
+                                    </td> --}}
+                                    <td
+                                        class="whitespace-nowrap px-4 py-2 text-gray-700 flex justify-center items-center">
+                                        @php
+                                            $fileExtension = pathinfo($report->reportProof, PATHINFO_EXTENSION);
+                                        @endphp
+
+                                        @if (in_array($fileExtension, ['png', 'jpg', 'jpeg', 'gif']))
+                                            <img src="{{ asset('uploads/reportapply/' . $report->reportProof) }}"
+                                                alt="Image" class="w-20 h-20">
+                                        @elseif($fileExtension === 'pdf')
+                                            <a href="{{ asset('uploads/reportapply/' . $report->reportProof) }}"
+                                                target="_blank">
+                                                {{-- <i class="fa-solid fa-file-pdf text-red-800 text-3xl"></i> --}}
+                                                <img src="{{ asset('icon/pdf17.svg') }}" alt="pdf icon"
+                                                    class="w-8 h-8">
+
+                                            </a>
+                                        @endif
+
+                                        <a href="{{ asset('uploads/reportapply/' . $report->reportProof) }}" download
+                                            class="ml-2 text-blue-600 hover:text-blue-800">
+                                            Download
+                                        </a>
                                     </td>
                                     <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-base">
                                         {{ $report->reportDate }}</td>

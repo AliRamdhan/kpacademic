@@ -32,7 +32,9 @@
                                     @elseif($fileExtension === 'pdf')
                                         <a href="{{ asset('uploads/kpslocation/' . $kp->locationProof) }}"
                                             target="_blank">
-                                            <i class="fa-solid fa-file-pdf text-red-800 text-3xl"></i>
+                                            {{-- <i class="fa-solid fa-file-pdf text-red-800 text-3xl"></i> --}}
+                                            <img src="{{ asset('icon/pdf17.svg') }}" alt="pdf icon" class="w-8 h-8">
+
                                         </a>
                                     @endif
 
